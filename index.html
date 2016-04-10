@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>1st JS</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<meta charset="utf-8">
+		<style>
+		@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700italic,300italic,400italic,500italic,300,500,700&subset=latin,cyrillic-ext,cyrillic);
+
+		body{
+			font-family: 'Ubuntu', sans-serif;
+			background-color: #fefeff;
+			margin-left: 33%;
+			margin-top: 50px;
+			width: 34%;
+			border: 1px solid black;
+			border-radius: 5px;
+			padding: 30px;
+			font-size: 18px;
+			line-height: 1.6em; /*межстрочный интервал*/
+		}
+		td{
+		/*margin: 3px;*/
+		padding: 1px;
+		}
+		input[type="number"] {
+			padding: 3px;
+			margin-top: 2px;
+			margin-bottom: 2px;
+			border: 1px dotted black;
+			font-size: 16px;
+			border-radius: 5px;
+		}
+		input[type="text"] {
+			border: 0px dotted black;
+			font-size: 16px;
+			border-radius: 5px;
+			width: 90%;
+		}
+		select {
+			 border-radius: 5px;
+			 margin-right: 2px;
+			 padding-right=2px;
+			 font-size: 16px;
+			 /*width: 150px;*/
+			 height: 25px;
+		}
+		option{
+			margin-right: 50px;
+			padding: 5px;
+		}
+		h3{
+			color: #00CC66	;	
+			/*	text-decoration: underline; /*подчеркнутый текст*/
+			font-size: 1.1em;	
+			border-bottom: thin dotted #888888;
+		}
+		</style>
+	</head>
+	<body>
+		<form id="forma" autocomplete="off">
+		<table border="0">
+			<caption><h3>Рассчет дверей-купе, профиль Futurum</h3></caption>
+			<tr>
+				<td colspan="2"><input id="adress" name = "adress" type="text"/></td>
+			</tr>
+			<tr>
+				<td>Тип профиля</td>
+				<td>
+					<select id="type" name="typeHC" width="100" autofocus>
+						<option value="32">Профиль Н</option>
+						<option value="26">Профиль С</option>
+				</td>
+			</tr>
+			<tr>
+				<td>Высота проема</td>
+				<td><input id="height" name = "Height" type="number" min="500" required/></td>
+			</tr>
+			<tr>
+				<td>Ширина проема</td>
+				<td><input id="width" name = "Width" type="number" min="500" required/></td>
+			</tr>
+						
+			<tr>
+				<td>Кол-во дверей</td>
+				<td><input id="amountDoors" name = "AmountDoors" type = "number" min="2" required/></td>
+			</tr>
+			<tr>
+				<td>Кол-во перехлестов</td>
+				<td><input id="amountCross" name = "AmountCross" type = "number" min="1" required/></td>
+			</tr>
+			<tr>
+				<td>Высота двери = верт. профиль</td>
+				<td id="doorHeight"></td>
+			</tr>
+			<tr>
+				<td>Ширина двери</td>
+				<td id="doorWidth"></td>
+			</tr>
+			<tr>
+				<td>Длина горизонт. профилей</td>
+				<td id="profilLength"></td>
+			</tr>
+			<tr>
+				<td>Длина рельс</td>
+				<td id="railLength"></td>
+			</tr>
+			<tr>
+				<td>Шлегель</td>
+				<td id="shlegelLength"></td>
+			</tr>
+			
+			<tr>
+				<td>ДСП</td>
+				<td id="dsp"></td>
+			</tr>
+			<tr>
+				<td>Зеркало</td>
+				<td id="mirror"></td>
+			</tr>
+
+		</table>
+		</form>
+		<button id="plus">Посчитать</button>
+		<script>
+			var button = document.getElementById("plus");
+			button.onclick = function(){
+				var width1 = parseInt(document.getElementById("width").value);
+				var height1 = parseInt(document.getElementById("height").value);
+				var amountDoors = parseInt(document.getElementById("amountDoors").value);
+				var amountCross = parseInt(document.getElementById("amountCross").value);
+				var profilWidth = parseInt(document.getElementById("type").value);
+				
+				var doorHeight = document.getElementById("doorHeight");
+				doorHeight.innerHTML = height1-40;
+				
+				var doorWidth = document.getElementById("doorWidth");
+				var widthDoor = Math.round((profilWidth*amountCross - 8 + width1)/amountDoors);
+				doorWidth.innerHTML = widthDoor;
+				
+				var railLength = document.getElementById("railLength");
+				railLength.innerHTML = width1;
+				
+				var shlegelLength = document.getElementById("shlegelLength");
+				shlegelLength.innerHTML = (height1 - 40) * amountDoors;
+				
+				//размеры ДСП, зеркала, горизонт профиль
+				var dsp = document.getElementById("dsp");
+				var mirror = document.getElementById("mirror");
+				var profilLength = document.getElementById("profilLength");
+				var dspHeight = height1 - 40 - 57;
+				var mirrorHeight = height1 - 40 - 59;
+				var dspWidth;
+				var mirrorWidth;
+				
+				switch (profilWidth){
+					case 32: //Н-профиль
+						dspWidth = widthDoor - 47; 
+						mirrorWidth = widthDoor - 49; 
+						profilLength.innerHTML = widthDoor - 62; 
+						break;
+					case 26: //С-профиль
+						dspWidth = widthDoor - 35; 
+						mirrorWidth = widthDoor - 37; 
+						profilLength.innerHTML = widthDoor - 49; 
+						break;
+				}
+				dsp.innerHTML = dspHeight + " x " + dspWidth;
+				mirror.innerHTML = mirrorHeight + " x " + mirrorWidth;
+			};
+		</script>
+	</body>
+</html>

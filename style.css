@@ -1,0 +1,52 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu:400,700italic,300italic,400italic,500italic,300,500,700&subset=latin,cyrillic-ext,cyrillic);
+
+body{
+	font-family: 'Ubuntu', sans-serif;
+	background-color: #fefeff;
+	margin-left: 33%;
+	width: 34%;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 30px;
+	font-size: 18px;
+	line-height: 1.6em; /*межстрочный интервал*/
+}
+input{
+	width=100px;
+}
+h1 h2 h3{
+	margin: 15px;
+	
+}
+h1{
+	color: black;
+	border-bottom: 1px solid black;
+	letter-spacing: 5px;
+	font-size: 1.8em;
+}
+h2{
+	color: #6600FF;
+	font-size: 1.2em;	
+}
+h3{
+	color: #00CC66	;	
+	/*	text-decoration: underline; /*подчеркнутый текст*/
+	font-size: 1.1em;	
+	border-bottom: thin dotted #888888;
+}
+h4{
+	color: #000000;	
+	font-size: 0.9em;	
+}
+
+/*#main{
+	background-color: #fefeff;
+	margin-left: 25%;
+	width: 50%;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding-left: 30px;
+	padding-bottom: 30px;
+	font-size: 18px;
+	line-height: 1.6em; /*межстрочный интервал*/
+}*/
